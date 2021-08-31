@@ -6,17 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "sucrase ./src -d ./build --transforms imports",
+    "start": "node build/server.js",
     "dev": "nodemon src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Evelyn Dias Santos",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "inquirer": "^8.1.2",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.12",

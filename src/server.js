@@ -3,6 +3,6 @@ import app from './app';
 
 //const app = require('./app');
 
-const PORT = 3333; //Variável de ambiente
+const PORT =process.env.PORT || 3000; //Variável de ambiente
 app.listen(PORT);
 
