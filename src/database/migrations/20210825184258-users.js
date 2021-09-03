@@ -1,37 +1,41 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+  up: async (queryInterface, Sequelize) => {
+    return queryInterface.createTable('appointments', {
       id: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false,
         autoIncrement: true,
-        primaryKey:true,
+        primaryKey: true,
       },
-      name:{
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email:{
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      password_hash:{
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      employee:{
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false,
-      },
-      created_at:{
+      date: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at:{
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+      },
+      employee_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+      },
+      canceled_at: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
@@ -39,10 +43,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('appointments')
   }
-};
-
-
-//Rodar
-//npx sequelize db:migrate 
+}

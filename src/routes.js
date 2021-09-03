@@ -1,12 +1,19 @@
 import { Router}  from 'express';
+import multer from 'multer';
+
+import multerConfig from './config/multer';
+
 import UserController from './app/controller/UserController';
 import SessionController from './app/controller/SessionController';
 import AppointmentController from './app/controller/AppointmentController';
+//Upload de arquivos
 
+//import UploadController from './app/controller/UploadController';
 import authMiddleware from './app/middlewares/auth';
 
 
 const routes = new Router();
+const upload = multer(multerConfig)
 
 routes.post('/user', UserController.store);
 routes.post('/session', SessionController.store);
@@ -16,7 +23,9 @@ routes.use(authMiddleware); //É chamado em todas as rotas abaixo  //Todos abaix
 routes.get('/qualquercoisa', UserController.index);
 routes.put('/user', UserController.update);
 
-routes.post('/appointment', AppointmentController.store)
+routes.post('/appointment', AppointmentController.store);
+
+//routes.post('/files',upload.single('file'),UploadController.store) //rota,s ervice e controller
 
 export default routes;
 
