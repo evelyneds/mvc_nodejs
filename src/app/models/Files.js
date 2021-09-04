@@ -15,4 +15,8 @@ class File extends Model {
             sequelize
         });
 
+        return this;
+      }
     }
+    
+    export default File;

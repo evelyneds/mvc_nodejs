@@ -8,7 +8,7 @@ import SessionController from './app/controller/SessionController';
 import AppointmentController from './app/controller/AppointmentController';
 //Upload de arquivos
 
-//import UploadController from './app/controller/UploadController';
+import FileController from './app/controller/FileController';
 import authMiddleware from './app/middlewares/auth';
 
 
@@ -25,7 +25,7 @@ routes.put('/user', UserController.update);
 
 routes.post('/appointment', AppointmentController.store);
 
-//routes.post('/files',upload.single('file'),UploadController.store) //rota,s ervice e controller
+routes.post('/files',upload.single('file'),FileController.store) //rota,s ervice e controller
 
 export default routes;
 
