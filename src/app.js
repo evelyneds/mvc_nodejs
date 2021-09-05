@@ -1,11 +1,14 @@
 //const express = require('express');
 //const routes = require = require('./routes')
+import 'dotenv/config';
+
 import express from 'express';
-import cors from 'cors'
-import routes from './routes';
+import cors from 'cors';
 import path from 'path';
+import routes from './routes';
 
 import './database';
+
 
 class App {
     constructor() {
@@ -19,7 +22,7 @@ class App {
     middleware() {
         this.server.use(cors());
         this.server.use(express.json()); //As rotas serão informadas em Json no escopo global
-        this.server.use('/files',express.static(path.resolve(__dirname,'..','tmp','uploads')))
+        this.server.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
     }
 
     routes() {

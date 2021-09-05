@@ -1,35 +1,31 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('appointments', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      date: {
-        type: Sequelize.DATE,
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
+      email: { 
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
       },
-      employee_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
+      password_hash: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      canceled_at: {
-        type: Sequelize.DATE,
-        allowNull: true,
+      employee: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -43,6 +39,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('appointments')
+    return queryInterface.dropTable('users');
   }
-}
+};

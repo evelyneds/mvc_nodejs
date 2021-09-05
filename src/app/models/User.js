@@ -22,7 +22,7 @@ class User extends Model {
   }
 
   static associate(models){
-    this.belongsTo(models.File, {foreignKey: 'photo_id', as: 'photo'})
+    this.belongsTo( models.File, { foreignKey: 'photo_id', as: 'photo' })
   }
 
 

@@ -18,7 +18,7 @@ module.exports = {
       {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       created_at:
       {
@@ -33,7 +33,7 @@ module.exports = {
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('');
+  down: queryInterface => {
+    return queryInterface.dropTable('files');
   }
 };

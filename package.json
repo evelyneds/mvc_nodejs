@@ -29,6 +29,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "nodemon": "^2.0.12",
     "sequelize-cli": "^6.2.0"
   }

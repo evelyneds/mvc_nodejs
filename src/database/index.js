@@ -2,8 +2,8 @@ import Sequelize from "sequelize";
 import mongoose from 'mongoose';
 
 import User from '../app/models/User';
-import Appointment from "../app/models/Appointment";
-import File from '../app/models/Files'
+import Appointment from '../app/models/Appointment';
+import File from '../app/models/File';
 import databaseConfig from '../config/database';
 
 const models = [User, Appointment, File];
@@ -22,14 +22,10 @@ class Database{
     }
 mongo(){
     this.mongoConnection = mongoose.connect(
-        'mongodb+srv://root:root@cluster0.v0cld.mongodb.net/root?retryWrites=true&w=majority'
+        process.env.MONGO_DB_CONNECT, //'mongodb+srv://root:root@cluster0.v0cld.mongodb.net/root?retryWrites=true&w=majority'
         {useNewUrlParser: true, useUnifiedTopology: true}
-
-
     )
-}
-
-
+  }
 }
 
 export default new Database();

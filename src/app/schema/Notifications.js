@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
-const NotificationSchema = new mongoose.Schema({
+const NotificationsSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true,   
     },
-    use:{
+    user:{
         type:Number,
         required:true,
     },
@@ -18,4 +18,4 @@ const NotificationSchema = new mongoose.Schema({
     timestamps: true,
 })
 
-export default mongoose.model('NotificationSchema',NotificationSchema)
+export default mongoose.model('NotificationsSchema', NotificationsSchema)

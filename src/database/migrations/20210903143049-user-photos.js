@@ -15,7 +15,7 @@ module.exports = {
     )
   },
 
-  down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('');
+  down: queryInterface => {
+    return queryInterface.dropTable('users', 'photo_id');
   }
 };

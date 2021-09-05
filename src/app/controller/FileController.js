@@ -1,30 +1,32 @@
-import File from '../models/Files';
+import File from '../models/File';
+import User from '../models/User';
 
+class FileControllers{
+  async store(req, res){
+    const { originalname: name, filename: path } = req.file;
 
-class FileController{
-    async store(req, res){
-        const {originalname: name, filename:path} = req.file;
-        
-        const file = await File.created({
-            name,
-            path,
-        })
-        
-        const userUpdate = await User.findOne({
-            where: {id: req.userId}
-        })
+    const { id, url } = await File.create({
+      name,
+      path,
+    })
 
-        /*
-        if(!(await userUpdate)){
-            return res.json({message:'Usuário não encontrado'})
-        }*/
+    const sendImage = await User.findOne(
+      {
+        where: { id: req.userId }
+      }
+    )
 
-        userUpdate.update({photo_id: req.userId})
-        
-        return res.json(file)
-    }
+    sendImage.update({ photo_id: id})
+
+    return res.json({
+      id: sendImage.id,
+      user: sendImage.name,
+      email: sendImage.email,
+      profile: { 
+        url
+      }
+    })
+  }
 }
 
-export default new FileController();
-
-//return res.status(200).json({message:'Tudo certo!'})
+export default new FileControllers();
